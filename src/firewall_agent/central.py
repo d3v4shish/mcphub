@@ -125,7 +125,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         yield
         app.state.monitor.cancel()
 
-    app = FastAPI(title="Firewall MCP Central", version="1.0.0", lifespan=lifespan)
+    app = FastAPI(title="MCPHub Central", version="1.0.0", lifespan=lifespan)
     app.state.sessions = sessions
     user = app_auth(settings)
     service = mcp_auth(settings)

@@ -1,7 +1,7 @@
 [project]
-name = "firewall-mcp-agent"
+name = "mcphub"
 version = "1.0.0"
-description = "Local, authenticated firewall analytics agent backed by standard MCP."
+description = "Local, authenticated multi-server MCP hub for security analytics."
 readme = "README.md"
 requires-python = ">=3.11,<3.15"
 dependencies = [

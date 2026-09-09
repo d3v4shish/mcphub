@@ -1,6 +1,6 @@
-# Firewall MCP Agent
+# MCPHub
 
-This is a local, authenticated firewall-log analytics agent. A standard MCP server exposes two read-only tools; a central FastAPI service registers that server and lets a local Ollama agent call only explicitly allowed tools.
+MCPHub is a local, authenticated multi-server MCP hub for security analytics. A central FastAPI service registers standard MCP servers and lets a local Ollama agent call only explicitly allowed tools.
 
 ## Quick start
 
