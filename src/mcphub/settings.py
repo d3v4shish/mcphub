@@ -18,6 +18,13 @@ class Settings(BaseSettings):
     mcp_shared_key: str
     ollama_url: str = "http://127.0.0.1:11434"
     ollama_model: str = "llama3.1:8b"
+    mcp_connect_timeout_seconds: float = 3
+    mcp_request_timeout_seconds: float = 20
+    mcp_tool_call_timeout_seconds: float = 20
+    mcp_max_response_bytes: int = 262_144
+    agent_max_iterations: int = 4
+    agent_max_tool_calls: int = 4
+    agent_max_execution_seconds: float = 90
     log_level: str = "INFO"
 
 

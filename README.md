@@ -1,6 +1,6 @@
 # MCPHub
 
-MCPHub is a local, authenticated multi-server MCP hub for security analytics. A central FastAPI service registers standard MCP servers and lets a local Ollama agent call only explicitly allowed tools.
+MCPHub is a policy-controlled, local-first MCP control plane. A central FastAPI service registers standard MCP servers and lets a local Ollama agent call only explicitly allowed tools. Firewall, asset, and threat services are deterministic example servers, not part of the hub's trust model.
 
 ## Quick start
 
@@ -20,12 +20,16 @@ Use `scripts/build.sh`, `scripts/test.sh`, and `scripts/benchmark.sh` from a cle
 
 All `/v1` client routes need `Authorization: Bearer $APP_API_KEY`; MCP registration needs `$MCP_SHARED_KEY`.
 
-- `POST /v1/mcp-servers` accepts `name` and loopback `mcp_url`.
-- `PUT /v1/agents/{name}` stores an explicit MCP-server/tool allowlist.
+- `POST /v1/mcp-servers` accepts `name` and a canonical loopback `mcp_url`.
+- `PUT /v1/agents/{name}` stores an explicit `agent -> server -> native tool` allowlist.
 - `POST /v1/agents/{name}:invoke` accepts `{"message":"..."}`.
 - `/healthz`, `/readyz`, and `/metrics` are local operational endpoints.
 
-The firewall database is opened read-only. Raw SQL is deliberately unsupported.
+Models receive namespaced tool IDs such as `github__search` and `jira__search`; MCPHub maps each ID back to its server and native MCP tool name before `tools/call`. A model may never call a server or tool merely because it exists. Unknown, fabricated, unauthorized, and stale policy entries are denied deterministically.
+
+MCPHub uses the official MCP v2 client for current protocol discovery and legacy fallback. It does not own a hard-coded protocol version, initialization notification, or session ID. Service credentials are sent as a transport header, redirects are disabled, and only `http://localhost`, IPv4 loopback, or IPv6 loopback URLs at `/mcp` are accepted. The firewall database is opened read-only; raw SQL, shells, and generic code-execution tools are deliberately unsupported.
+
+MCP requests have explicit connect, request, tool-call, and response-size limits. The agent has explicit iteration, tool-call, and total-execution-time limits; configure them with the documented `MCP_*` and `AGENT_*` environment variables in `.env.example`.
 
 ## Multi-MCP routing evaluation
 

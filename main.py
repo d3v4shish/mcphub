@@ -1,5 +1,5 @@
-"""Compatibility ASGI entry point. Use `firewall-central` for normal operation."""
+"""Compatibility ASGI entry point. Use `mcphub` for normal operation."""
 
-from firewall_agent.central import app
+from mcphub.central import app
 
 __all__ = ["app"]

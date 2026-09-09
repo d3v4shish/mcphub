@@ -3,8 +3,8 @@
 from statistics import median
 from time import perf_counter
 
-from firewall_agent.firewall import FirewallFilters, FirewallRepository
-from firewall_agent.settings import get_settings
+from mcphub.firewall import FirewallFilters, FirewallRepository
+from mcphub.settings import get_settings
 
 repository = FirewallRepository(get_settings().firewall_database_path)
 samples = []

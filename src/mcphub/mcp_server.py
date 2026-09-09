@@ -2,7 +2,7 @@ import hmac
 from typing import Any
 
 import uvicorn
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 from starlette.responses import JSONResponse
 
 from .firewall import Action, FirewallFilters, FirewallRepository, GroupBy, Protocol
@@ -10,7 +10,7 @@ from .settings import get_settings
 
 settings = get_settings()
 repository = FirewallRepository(settings.firewall_database_path)
-mcp = FastMCP("Firewall analytics", instructions="Read-only firewall log analytics.")
+mcp = MCPServer("Firewall analytics", instructions="Read-only firewall log analytics.")
 
 
 @mcp.tool()

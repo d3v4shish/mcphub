@@ -4,7 +4,7 @@ import hmac
 from typing import Literal
 
 import uvicorn
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 from starlette.responses import JSONResponse
 
 from .settings import get_settings
@@ -21,8 +21,8 @@ THREATS = {
     "198.51.100.99": {"reputation": "malicious", "confidence": 91, "category": "botnet"},
 }
 
-asset_mcp = FastMCP("Asset inventory", instructions="Read-only local asset inventory.")
-threat_mcp = FastMCP("Threat intelligence", instructions="Read-only local threat intelligence.")
+asset_mcp = MCPServer("Asset inventory", instructions="Read-only local asset inventory.")
+threat_mcp = MCPServer("Threat intelligence", instructions="Read-only local threat intelligence.")
 
 
 @asset_mcp.custom_route("/healthz", methods=["GET"])

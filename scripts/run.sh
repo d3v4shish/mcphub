@@ -27,4 +27,4 @@ if [[ "$ready" -ne 1 ]]; then
   echo "MCP services did not become healthy" >&2
   exit 1
 fi
-uv run firewall-central
+uv run mcphub

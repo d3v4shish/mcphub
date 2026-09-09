@@ -1,4 +1,4 @@
-from firewall_agent.extra_mcp import (
+from mcphub.extra_mcp import (
     find_assets_by_owner,
     list_high_risk_indicators,
     lookup_asset,

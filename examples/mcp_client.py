@@ -4,7 +4,7 @@ import asyncio
 import json
 import os
 
-from firewall_agent.mcp_client import MCPClient
+from mcphub.mcp_client import MCPClient
 
 
 async def main() -> None:

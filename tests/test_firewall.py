@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from firewall_agent.firewall import FirewallFilters, FirewallRepository
+from mcphub.firewall import FirewallFilters, FirewallRepository
 
 FIXTURE = Path(__file__).parents[1] / "mcp_servers" / "firewall_logs.db"
 

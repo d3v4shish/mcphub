@@ -7,7 +7,7 @@ requires-python = ">=3.11,<3.15"
 dependencies = [
   "fastapi>=0.115,<1",
   "httpx>=0.28,<1",
-  "mcp>=1.9,<2",
+  "mcp>=2,<3",
   "pydantic-settings>=2.6,<3",
   "sqlalchemy>=2.0,<3",
   "uvicorn[standard]>=0.30,<1",
@@ -17,17 +17,17 @@ dependencies = [
 dev = ["pytest>=8,<9", "pytest-asyncio>=0.24,<1", "ruff>=0.8,<1"]
 
 [project.scripts]
-firewall-central = "firewall_agent.central:run"
-firewall-mcp = "firewall_agent.mcp_server:run"
-asset-mcp = "firewall_agent.extra_mcp:run_asset"
-threat-mcp = "firewall_agent.extra_mcp:run_threat"
+mcphub = "mcphub.central:run"
+firewall-mcp = "mcphub.mcp_server:run"
+asset-mcp = "mcphub.extra_mcp:run_asset"
+threat-mcp = "mcphub.extra_mcp:run_threat"
 
 [build-system]
 requires = ["hatchling>=1.26,<2"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/firewall_agent"]
+packages = ["src/mcphub"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
